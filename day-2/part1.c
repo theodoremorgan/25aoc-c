@@ -8,7 +8,7 @@ int main(int argc, char **argv){
     printf("starting...\n");
 
     printf("opening file...\n");
-    FILE *input = fopen("./data/input.txt", "r");
+    FILE *input = fopen("./data/test.txt", "r");
 
     unsigned long lower;
     unsigned long upper;
@@ -26,26 +26,20 @@ int main(int argc, char **argv){
 
         int ndigits = log10(lower) + 1;
 
-        printf("digits: %i\n", ndigits);
+        //printf("digits: %i\n", ndigits);
 
-        dechalf = ndigits / 2;
-
-        if (ndigits % 2 != 0){
-        dechalf++;
-        }
+        dechalf = ndigits + 1 / 2;
 
         tryroot = lower / pow(10, dechalf);
 
-        printf("tryroot: %li\n", tryroot);
+        //printf("tryroot: %li\n", tryroot);
 
         int rootndigits = log10(tryroot) + 1;        
         tryfull = tryroot * pow(10, rootndigits) + tryroot;
 
-        //printf("tryfull: %li\n", tryfull);
-
         while (tryfull <= upper){
             if (tryfull >= lower){
-                printf("tryfull: %li\n", tryfull);
+                //printf("tryfull: %li\n", tryfull);
                 sum += tryfull;
             }
             tryroot++;
