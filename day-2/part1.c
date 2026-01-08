@@ -15,11 +15,8 @@ int main(int argc, char **argv){
 
     unsigned long sum;
 
-    //herein lies the problem
     unsigned long tryroot;
     unsigned long tryfull;
-
-    int32_t i;
 
     int32_t dechalf;
 
@@ -65,10 +62,3 @@ int main(int argc, char **argv){
 
     return 0;
 }
-
-/*
-
-if length is odd;
-    start first try from 
-    len + 1/2
-*/
