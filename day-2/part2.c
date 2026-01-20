@@ -58,6 +58,7 @@ int main(int argc, char **argv){
                         //printf("tryfull = %li\n", tryfull);
                         // if its in range, add to sum
                         if (tryfull >= lower && tryfull <= upper){
+                            // ADD CONDITION HERE. IF root is a repeat of 2 little number then dont count (again).
                             printf("success! %li\n", tryfull);
                             sum += tryfull;
                         }
