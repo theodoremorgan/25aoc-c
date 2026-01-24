@@ -2,8 +2,18 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include <math.h>
-#include <list.c>
+#include <string.h>
+#include "linked_list.h"
+
+bool ulong_cmp(const void* a, const void* b) { 
+    return *(const unsigned long*)a == *(const unsigned long*)b;   
+}
+
+void int_print(const void* value) {      
+    printf("%d", *(const int*)value);   
+}
 
 // create queue to track used...
 
@@ -11,7 +21,7 @@ int main(int argc, char **argv){
     printf("starting...\n");
 
     printf("opening file...\n");
-    FILE *input = fopen("./data/test.txt", "r");
+    FILE *input = fopen("./data/input.txt", "r");
 
     unsigned long lower;
     unsigned long upper;
@@ -29,7 +39,13 @@ int main(int argc, char **argv){
 
     int32_t dechalf;
 
+    List*  list;
+    initList(list);
+
+
     while (fscanf(input, "%li-%li,", &lower, &upper) != EOF){
+
+        clearList(list);
 
         printf("lower is: %li. Upper is %li.\n", lower, upper);
 
@@ -62,9 +78,10 @@ int main(int argc, char **argv){
                         // if its in range, add to sum
                         if (tryfull >= lower && tryfull <= upper){
                             // ADD CONDITION HERE. IF root is a repeat of 2 little number then dont count (again).
-                            if (!isdouble(tryroot)){
+                            if (!isinList(list, tryfull)){
                                 printf("success! %li\n", tryfull);
                                 sum += tryfull;
+                                appendList(list, tryfull);
                             }
                         }
                         // increment the root
@@ -85,6 +102,7 @@ int main(int argc, char **argv){
 
     printf("Final score: %li.\n", sum);
     printf("closing file & finishing up \n");
+
     fclose(input);
 
     return 0;
